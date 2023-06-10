@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import clockSoundd from "../assests/clockSoundd.mp3";
@@ -16,11 +16,11 @@ function Break() {
       stroke: "#ff4c4c",
     },
   };
-  let timeinterval = null;
 
+  const timeintervalRef = useRef(null);
   useEffect(() => {
     if (pamo) {
-      timeinterval = setInterval(() => {
+      timeintervalRef.current = setInterval(() => {
         if (seconds > 0) {
           setseconds((pre) => pre - 1);
         } else if (minutes > 0) {
@@ -29,7 +29,7 @@ function Break() {
         } else setActive(false);
       }, 100);
     }
-    return () => clearInterval(timeinterval);
+    return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
   const start = () => {
     setActive(true);
@@ -58,13 +58,10 @@ function Break() {
     const audio = new Audio(clockSoundd);
     audio.play();
     audio.volume = 0.2;
-    console.log("play");
   };
   if (progressValue === 0) {
     playClockSound();
   }
-
-  console.log(progressValue);
 
   return (
     <div className="container" style={{ width: 300, height: 300 }}>

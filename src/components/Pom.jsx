@@ -47,7 +47,7 @@ function Pomodoro() {
       setstartorpause(true);
     }
   };
-  console.log(startorpause);
+
   useEffect(() => {
     if (progressValue) {
       setProgressValue(
@@ -60,7 +60,6 @@ function Pomodoro() {
     const audio = new Audio(clockSoundd);
     audio.play();
     audio.volume = 0.1;
-    console.log("play");
   };
   if (progressValue === 0) {
     playClockSound();
