@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import clockSoundd from "../assests/clockSoundd.mp3";
+
 function Pomodoro() {
   const circularProgressStyles = {
     path: {
@@ -54,7 +56,15 @@ function Pomodoro() {
       );
     }
   }, [minutes, seconds]);
-  console.log(progressValue);
+  const playClockSound = () => {
+    const audio = new Audio(clockSoundd);
+    audio.play();
+    audio.volume = 0.1;
+    console.log("play");
+  };
+  if (progressValue === 0) {
+    playClockSound();
+  }
   return (
     <div className="container" style={{ width: 300, height: 300 }}>
       <CircularProgressbarWithChildren
@@ -69,16 +79,17 @@ function Pomodoro() {
         </h1>
         <div>
           {startorpause ? (
-            <div>
-              <button onClick={start}>start</button>
-            </div>
+            <button className="btn1" onClick={start}>
+              <i className="fa-solid fa-play"></i>
+            </button>
           ) : (
-            <div>
-              <button onClick={pause}>pause</button>
-            </div>
+            <button className="btn1" onClick={pause}>
+              {" "}
+              <i className="fa-solid fa-pause"></i>
+            </button>
           )}
 
-          <button onClick={reset}>
+          <button className="btn2" onClick={reset}>
             <i className="fa-solid fa-repeat"></i>
           </button>
         </div>

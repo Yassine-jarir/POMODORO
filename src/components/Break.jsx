@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import clockSoundd from "../assests/clockSoundd.mp3";
 
 function Break() {
   let initialMinutes = 10;
   const initialSeconds = 0;
-  const [minutes, setminutes] = useState(10);
-  const [seconds, setseconds] = useState(0);
+  const [minutes, setminutes] = useState(initialMinutes);
+  const [seconds, setseconds] = useState(initialSeconds);
   const [pamo, setActive] = useState(false);
   const [startorpause, setstartorpause] = useState(true);
   const [progressValue, setProgressValue] = useState(100);
@@ -52,6 +53,19 @@ function Break() {
       );
     }
   }, [minutes, seconds]);
+
+  const playClockSound = () => {
+    const audio = new Audio(clockSoundd);
+    audio.play();
+    audio.volume = 0.2;
+    console.log("play");
+  };
+  if (progressValue === 0) {
+    playClockSound();
+  }
+
+  console.log(progressValue);
+
   return (
     <div className="container" style={{ width: 300, height: 300 }}>
       <CircularProgressbarWithChildren
@@ -66,16 +80,16 @@ function Break() {
         </h1>
         <div>
           {startorpause ? (
-            <div>
-              <button onClick={start}>start</button>
-            </div>
+            <button className="btn1" onClick={start}>
+              <i className="fa-solid fa-play"></i>
+            </button>
           ) : (
-            <div>
-              <button onClick={pause}>pause</button>
-            </div>
+            <button className="btn1" onClick={pause}>
+              <i className="fa-solid fa-pause"></i>
+            </button>
           )}
 
-          <button onClick={reset}>
+          <button className="btn2" onClick={reset}>
             <i className="fa-solid fa-repeat"></i>
           </button>
         </div>
