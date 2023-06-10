@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Clocksound } from "./assests/port";
+import { Clocksound, Iconenotif } from "./assests/port";
+import addNotification from "react-push-notification";
 
 function Break() {
-  let initialMinutes = 10;
-  const initialSeconds = 0;
+  const notif = () => {
+    addNotification({
+      title: "TOP G",
+      message: "lalalala",
+      duration: 4000,
+      icon: Iconenotif,
+      native: true,
+    });
+  };
+  let initialMinutes = 0;
+  const initialSeconds = 20;
   const [minutes, setminutes] = useState(initialMinutes);
   const [seconds, setseconds] = useState(initialSeconds);
   const [pamo, setActive] = useState(false);
@@ -44,7 +54,7 @@ function Break() {
     setminutes(initialMinutes);
     setseconds(initialSeconds);
   };
-  console.log(startorpause);
+
   useEffect(() => {
     if (progressValue) {
       setProgressValue(
@@ -59,8 +69,10 @@ function Break() {
     audio.play();
     audio.volume = 0.2;
   };
+
   if (progressValue === 0) {
     playClockSound();
+    notif();
   }
 
   return (

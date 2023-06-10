@@ -1,3 +1,3 @@
 import Clocksound from "./Clocksound.mp3";
-
-export { Clocksound };
+import Iconenotif from "./iconenot.jpg";
+export { Clocksound, Iconenotif };
