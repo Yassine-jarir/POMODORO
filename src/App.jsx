@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Pomodoro from "./components/pomodoro";
+// import Pomodoro from "./components/pomodoro";
 import Layout from "./components/Layout";
-
-import Break from "./components/break";
+import Break from "./components/Break";
+import Pomodoro from "./components/Pomodoro";
 
 function App() {
   return (

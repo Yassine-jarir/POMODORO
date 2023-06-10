@@ -13,7 +13,7 @@ function Break() {
   const [progressValue, setProgressValue] = useState(100);
   const circularProgressStyles = {
     path: {
-      stroke: "#ff4c4c", // Change this to the desired border color
+      stroke: "#ff4c4c",
     },
   };
   let timeinterval = null;

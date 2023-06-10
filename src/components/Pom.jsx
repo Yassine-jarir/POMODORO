@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import clockSoundd from "../assests/clockSoundd.mp3";
@@ -16,11 +16,11 @@ function Pomodoro() {
   const [pamo, setActive] = useState(false);
   const [startorpause, setstartorpause] = useState(true);
   const [progressValue, setProgressValue] = useState(100);
-  let timeinterval = null;
-
+  // let timeinterval = null;
+  const timeintervalRef = useRef(null);
   useEffect(() => {
     if (pamo) {
-      timeinterval = setInterval(() => {
+      timeintervalRef.current = setInterval(() => {
         if (seconds > 0) {
           setseconds((pre) => pre - 1);
         } else if (minutes > 0) {
@@ -29,7 +29,7 @@ function Pomodoro() {
         } else setActive(false);
       }, 50);
     }
-    return () => clearInterval(timeinterval);
+    return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
   const start = () => {
     setActive(true);
@@ -55,7 +55,7 @@ function Pomodoro() {
           100
       );
     }
-  }, [minutes, seconds]);
+  }, [minutes, seconds, initialMinutes, progressValue]);
   const playClockSound = () => {
     const audio = new Audio(clockSoundd);
     audio.play();
