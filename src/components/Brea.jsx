@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import clockSoundd from "../assests/clockSoundd.mp3";
+import clockSoundd from "../assests/ClockSoundd.mp3";
 
 function Break() {
   let initialMinutes = 10;
