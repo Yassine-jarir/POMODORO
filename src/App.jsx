@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
-import Break from "./components/break";
+import Break from "./components/Brea";
 import Pomodoro from "./components/Pom";
 
 function App() {

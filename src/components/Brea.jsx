@@ -52,7 +52,7 @@ function Break() {
           100
       );
     }
-  }, [minutes, seconds]);
+  }, [minutes, seconds, initialMinutes, progressValue]);
 
   const playClockSound = () => {
     const audio = new Audio(clockSoundd);
