@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import ClockSoundd from "../assests/ClockSoundd.mp3";
+
+import { Clocksound } from "./assests/port";
 
 function Pomodoro() {
   const circularProgressStyles = {
@@ -57,7 +58,7 @@ function Pomodoro() {
     }
   }, [minutes, seconds, initialMinutes, progressValue]);
   const playClockSound = () => {
-    const audio = new Audio(ClockSoundd);
+    const audio = new Audio(Clocksound);
     audio.play();
     audio.volume = 0.1;
   };
