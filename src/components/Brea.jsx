@@ -2,14 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Clocksound } from "./assests/port";
-// Iconenotif
-// import addNotification from "react-push-notification";
+
 import { useOutletContext } from "react-router-dom";
 
 function Break() {
   const { brechange } = useOutletContext();
+  const getlocalpomo = parseInt(localStorage.getItem("localbreak"));
 
-  let initialMinutes = brechange > 0 ? brechange : 10;
+  let initialMinutes = getlocalpomo && getlocalpomo > 0 ? getlocalpomo : 10;
+  useEffect(() => {
+    if (getlocalpomo) {
+      setminutes(getlocalpomo);
+    }
+    console.log(getlocalpomo);
+  }, [brechange, getlocalpomo]);
+
   const initialSeconds = 0;
   const [minutes, setminutes] = useState(initialMinutes);
   const [seconds, setseconds] = useState(initialSeconds);
@@ -19,16 +26,6 @@ function Break() {
   useEffect(() => {
     setminutes(initialMinutes);
   }, [brechange, initialMinutes]);
-
-  // const notif = () => {
-  //   addNotification({
-  //     title: "TOP G",
-  //     message: "lalalala",
-  //     duration: 4000,
-  //     icon: Iconenotif,
-  //     native: true,
-  //   });
-  // };
 
   const circularProgressStyles = {
     path: {

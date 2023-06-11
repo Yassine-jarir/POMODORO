@@ -2,14 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Clocksound } from "./assests/port";
-// Iconenotif
-// import addNotification from "react-push-notification";
 import { useOutletContext } from "react-router-dom";
 
 function Pomodoro() {
   const { pomochange } = useOutletContext();
-
-  let initialMinutes = pomochange > 0 ? pomochange : 50;
+  const getlocalpomo = parseInt(localStorage.getItem("setpomo"));
+  let initialMinutes = getlocalpomo && getlocalpomo > 0 ? getlocalpomo : 50;
+  useEffect(() => {
+    if (getlocalpomo) {
+      setminutes(getlocalpomo);
+    }
+    console.log(getlocalpomo);
+  }, [pomochange, getlocalpomo]);
   const initialSeconds = 0;
   const [minutes, setminutes] = useState(initialMinutes);
   const [seconds, setseconds] = useState(initialSeconds);
@@ -17,19 +21,6 @@ function Pomodoro() {
   const [startorpause, setstartorpause] = useState(true);
   const [progressValue, setProgressValue] = useState(100);
   const timeintervalRef = useRef(null);
-
-  // useEffect(() => {
-  //   setminutes(initialMinutes);
-  // }, [pomochange, initialMinutes]);
-  // const notif = () => {
-  //   addNotification({
-  //     title: "TOP G",
-  //     message: "lalalala",
-  //     duration: 4000,
-  //     icon: Iconenotif,
-  //     native: true,
-  //   });
-  // };
 
   useEffect(() => {
     if (pamo) {
@@ -40,7 +31,7 @@ function Pomodoro() {
           setminutes((pre) => pre - 1);
           setseconds(59);
         } else setActive(false);
-      }, 1000);
+      }, 10);
     }
     return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);

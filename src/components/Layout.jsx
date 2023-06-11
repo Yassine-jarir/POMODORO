@@ -21,11 +21,14 @@ function Layout() {
   const handlechanges = () => {
     setchange(pomoInput);
     setbrechange(breakinput);
+    localStorage.setItem("setpomo", pomoInput.toString());
+    localStorage.setItem("localbreak", breakinput.toString());
     Closemodal();
   };
   const handlereset = () => {
     setbrechange(0);
     setchange(0);
+    localStorage.clear();
   };
 
   const Openmodal = () => {
