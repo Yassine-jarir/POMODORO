@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Clocksound } from "./assests/port";
-// Iconenotif
-// import addNotification from "react-push-notification";
+import { Clocksound, Iconenotif } from "./assests/port";
+
+import addNotification from "react-push-notification";
 import { useOutletContext } from "react-router-dom";
 
 function Pomodoro() {
@@ -16,21 +16,21 @@ function Pomodoro() {
   const [pamo, setActive] = useState(false);
   const [startorpause, setstartorpause] = useState(true);
   const [progressValue, setProgressValue] = useState(100);
-
-  // useEffect(() => {
-  //   setminutes(initialMinutes);
-  // }, [pomochange, initialMinutes]);
-  // const notif = () => {
-  //   addNotification({
-  //     title: "TOP G",
-  //     message: "lalalala",
-  //     duration: 4000,
-  //     icon: Iconenotif,
-  //     native: true,
-  //   });
-  // };
-
   const timeintervalRef = useRef(null);
+
+  useEffect(() => {
+    setminutes(initialMinutes);
+  }, [pomochange, initialMinutes]);
+  const notif = () => {
+    addNotification({
+      title: "TOP G",
+      message: "lalalala",
+      duration: 4000,
+      icon: Iconenotif,
+      native: true,
+    });
+  };
+
   useEffect(() => {
     if (pamo) {
       timeintervalRef.current = setInterval(() => {
@@ -44,6 +44,7 @@ function Pomodoro() {
     }
     return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
+
   const start = () => {
     setActive(true);
     setstartorpause(false);
@@ -76,12 +77,12 @@ function Pomodoro() {
   };
   const circularProgressStyles = {
     path: {
-      stroke: "#0abf53", // Change this to the desired border color
+      stroke: "#0abf53",
     },
   };
   if (progressValue === 0) {
     playClockSound();
-    // notif();
+    notif();
   }
   return (
     <div className="container" style={{ width: 300, height: 300 }}>
