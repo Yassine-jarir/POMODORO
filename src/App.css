@@ -204,12 +204,13 @@ input {
   background-clip: padding-box;
   border: 1px solid #6d6d6d;
   appearance: none;
+  text-align: center;
   border-radius: 0.25rem;
 }
 .first-input {
   border: 1px solid #2eff84;
 }
-.first-input:focus {
+.fir-input:focus {
   color: #f8f9fa;
   background-color: #000;
   border-color: #2eff84;
