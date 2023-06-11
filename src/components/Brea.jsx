@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Clocksound, Iconenotif } from "./assests/port";
-import addNotification from "react-push-notification";
+import { Clocksound } from "./assests/port";
+// Iconenotif
+// import addNotification from "react-push-notification";
 import { useOutletContext } from "react-router-dom";
 
 function Break() {
@@ -19,15 +20,15 @@ function Break() {
     setminutes(initialMinutes);
   }, [brechange, initialMinutes]);
 
-  const notif = () => {
-    addNotification({
-      title: "TOP G",
-      message: "lalalala",
-      duration: 4000,
-      icon: Iconenotif,
-      native: true,
-    });
-  };
+  // const notif = () => {
+  //   addNotification({
+  //     title: "TOP G",
+  //     message: "lalalala",
+  //     duration: 4000,
+  //     icon: Iconenotif,
+  //     native: true,
+  //   });
+  // };
 
   const circularProgressStyles = {
     path: {
@@ -45,7 +46,7 @@ function Break() {
           setminutes((pre) => pre - 1);
           setseconds(59);
         } else setActive(false);
-      }, 100);
+      }, 1000);
     }
     return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
@@ -80,7 +81,7 @@ function Break() {
 
   if (progressValue === 0) {
     playClockSound();
-    notif();
+    // notif();
   }
 
   return (

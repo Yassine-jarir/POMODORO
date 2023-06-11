@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Clocksound, Iconenotif } from "./assests/port";
-
-import addNotification from "react-push-notification";
+import { Clocksound } from "./assests/port";
+// Iconenotif
+// import addNotification from "react-push-notification";
 import { useOutletContext } from "react-router-dom";
 
 function Pomodoro() {
@@ -18,18 +18,18 @@ function Pomodoro() {
   const [progressValue, setProgressValue] = useState(100);
   const timeintervalRef = useRef(null);
 
-  useEffect(() => {
-    setminutes(initialMinutes);
-  }, [pomochange, initialMinutes]);
-  const notif = () => {
-    addNotification({
-      title: "TOP G",
-      message: "lalalala",
-      duration: 4000,
-      icon: Iconenotif,
-      native: true,
-    });
-  };
+  // useEffect(() => {
+  //   setminutes(initialMinutes);
+  // }, [pomochange, initialMinutes]);
+  // const notif = () => {
+  //   addNotification({
+  //     title: "TOP G",
+  //     message: "lalalala",
+  //     duration: 4000,
+  //     icon: Iconenotif,
+  //     native: true,
+  //   });
+  // };
 
   useEffect(() => {
     if (pamo) {
@@ -40,7 +40,7 @@ function Pomodoro() {
           setminutes((pre) => pre - 1);
           setseconds(59);
         } else setActive(false);
-      }, 50);
+      }, 1000);
     }
     return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
@@ -82,7 +82,7 @@ function Pomodoro() {
   };
   if (progressValue === 0) {
     playClockSound();
-    notif();
+    // notif();
   }
   return (
     <div className="container" style={{ width: 300, height: 300 }}>
