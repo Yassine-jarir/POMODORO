@@ -3,8 +3,22 @@ import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Clocksound, Iconenotif } from "./assests/port";
 import addNotification from "react-push-notification";
+import { useOutletContext } from "react-router-dom";
 
 function Break() {
+  const { brechange } = useOutletContext();
+
+  let initialMinutes = brechange > 0 ? brechange : 10;
+  const initialSeconds = 0;
+  const [minutes, setminutes] = useState(initialMinutes);
+  const [seconds, setseconds] = useState(initialSeconds);
+  const [pamo, setActive] = useState(false);
+  const [startorpause, setstartorpause] = useState(true);
+  const [progressValue, setProgressValue] = useState(100);
+  useEffect(() => {
+    setminutes(initialMinutes);
+  }, [brechange, initialMinutes]);
+
   const notif = () => {
     addNotification({
       title: "TOP G",
@@ -14,13 +28,7 @@ function Break() {
       native: true,
     });
   };
-  let initialMinutes = 0;
-  const initialSeconds = 20;
-  const [minutes, setminutes] = useState(initialMinutes);
-  const [seconds, setseconds] = useState(initialSeconds);
-  const [pamo, setActive] = useState(false);
-  const [startorpause, setstartorpause] = useState(true);
-  const [progressValue, setProgressValue] = useState(100);
+
   const circularProgressStyles = {
     path: {
       stroke: "#ff4c4c",
