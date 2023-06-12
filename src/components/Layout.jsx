@@ -63,87 +63,89 @@ function Layout() {
   // console.log(pomoInput);
   // console.log(pomochange);
   return (
-    <div className="main-container" style={{ width: 500, height: 500 }}>
-      <header>
-        <div className="navlink-container">
-          <NavLink
-            to="."
-            style={({ isActive }) => (isActive ? stylehead2 : null)}
-          >
-            Pomodoro
-          </NavLink>
-          <NavLink
-            to="break"
-            style={({ isActive }) => (isActive ? stylehead : null)}
-          >
-            Break
-          </NavLink>
-        </div>
+    <div className="main-height">
+      <div className="main-container">
+        <header>
+          <div className="navlink-container">
+            <NavLink
+              to="."
+              style={({ isActive }) => (isActive ? stylehead2 : null)}
+            >
+              Pomodoro
+            </NavLink>
+            <NavLink
+              to="break"
+              style={({ isActive }) => (isActive ? stylehead : null)}
+            >
+              Break
+            </NavLink>
+          </div>
 
-        <div className="setting-container">
-          <button className="btn-setting" onClick={Openmodal}>
-            <i className="fa-solid fa-gear"></i>
-          </button>
-          <ReactModal
-            isOpen={modalopen}
-            onRequestClose={Closemodal}
-            contentLabel="Popup Modal"
-            style={customStyles}
-            ariaHideApp={false}
-          >
-            <div className="box-setting">
-              <div className="boxxx">
-                <button className="btn-close" onClick={Closemodal}>
-                  <i className="fa-sharp fa-solid fa-xmark"></i>
-                </button>
-                <div className="seth1">
-                  <div style={{ textAlign: "center" }}>
-                    <label>Pomodoro</label>
-                    <input
-                      className="first-input"
-                      type="number"
-                      min={1}
-                      max={90}
-                      onChange={handlePomoInput}
-                      value={pomoInput}
-                    />
+          <div className="setting-container">
+            <button className="btn-setting" onClick={Openmodal}>
+              <i className="fa-solid fa-gear"></i>
+            </button>
+            <ReactModal
+              isOpen={modalopen}
+              onRequestClose={Closemodal}
+              contentLabel="Popup Modal"
+              style={customStyles}
+              ariaHideApp={false}
+            >
+              <div className="box-setting">
+                <div className="boxxx">
+                  <button className="btn-close" onClick={Closemodal}>
+                    <i className="fa-sharp fa-solid fa-xmark"></i>
+                  </button>
+                  <div className="seth1">
+                    <div style={{ textAlign: "center" }}>
+                      <label>Pomodoro</label>
+                      <input
+                        className="first-input"
+                        type="number"
+                        min={1}
+                        max={90}
+                        onChange={handlePomoInput}
+                        value={pomoInput}
+                      />
+                    </div>
+                    <div style={{ textAlign: "center" }}>
+                      <label>Break</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={90}
+                        onChange={handleBreakInput}
+                        value={breakinput}
+                        className="sec-input"
+                      />
+                    </div>
                   </div>
-                  <div style={{ textAlign: "center" }}>
-                    <label>Break</label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={90}
-                      onChange={handleBreakInput}
-                      value={breakinput}
-                      className="sec-input"
-                    />
+                </div>
+                <div
+                  className="box-container"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <button className="btn-reset" onClick={handlereset}>
+                    reset all
+                  </button>
+                  <div style={{ display: "flex" }}>
+                    <button className="btn-close-box" onClick={Closemodal}>
+                      close
+                    </button>
+                    <button onClick={handlechanges} className="btn-save">
+                      save changes
+                    </button>
                   </div>
                 </div>
               </div>
-              <div
-                className="box-container"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <button className="btn-reset" onClick={handlereset}>
-                  reset all
-                </button>
-                <div style={{ display: "flex" }}>
-                  <button className="btn-close-box" onClick={Closemodal}>
-                    close
-                  </button>
-                  <button onClick={handlechanges} className="btn-save">
-                    save changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </ReactModal>
-        </div>
-      </header>
-      <main>
-        <Outlet context={{ pomochange, brechange }} />
-      </main>
+            </ReactModal>
+          </div>
+        </header>
+        <main>
+          <Outlet context={{ pomochange, brechange }} />
+        </main>
+      </div>
     </div>
   );
 }
