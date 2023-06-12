@@ -31,7 +31,7 @@ function Pomodoro() {
           setminutes((pre) => pre - 1);
           setseconds(59);
         } else setActive(false);
-      }, 10);
+      }, 1000);
     }
     return () => clearInterval(timeintervalRef.current);
   }, [pamo, minutes, seconds]);
